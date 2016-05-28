@@ -1,0 +1,86 @@
+.top-navbar
+  position: fixed
+  width: 100%
+.top-navbar .content
+  display: flex
+  flex-flow: row nowrap
+  min-height: 40px
+  background-color: black
+  color: lightgray
+  *
+    line-height: 40px
+    vertical-align: middle
+  .logo
+    align-self: flex-start
+    padding-left: 5px
+    margin-left: 10px
+    /* background: url("/img/logo.svg")
+    /* background-size: 24px 24px
+    /* background-repeat: no-repeat
+    /* background-position: left center
+    &:after
+      content: 'Om Next Sample'
+      margin-left: 26px
+      font-size: x-large
+      text-transform: uppercase
+
+  .username
+    position: relative
+    align-self: flex-end
+    margin-right: 20px
+    &:before
+      content: 'John Doe'
+      top: 0
+      right: 20px
+    &:after
+      content: "\f0d7"
+      top: 0
+      margin-left: 5px
+      font-family: FontAwesome
+
+.top-navbar .top-menu
+  flex-grow: 1
+  margin-left: 20px
+  font-weight: bold
+
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+    border-left: 1px solid darkgray
+    li
+      display: inline-block
+      padding-right: 30px
+      padding-left: 30px
+      border-right: 1px solid darkgray
+      cursor: pointer
+      transition: .3s all ease-in-out
+      &:hover, &.active
+        background-color: lightgray
+        color: black
+
+
+.top-navbar .top-submenu
+  display: flex
+  flex-flow: row nowrap
+  background-color: white
+  +box-shadow(1px, 1px, 5px, darkgray)
+
+  ul
+    padding: 0px
+    padding-bottom: 20px
+    list-style: none
+    li
+      position: relative
+      padding-right: 40px
+      padding-left: 40px
+      cursor: pointer
+      transition: .4s all ease-in-out
+      &:hover
+        color: lightgray
+        &:before
+          content: '\f0da'
+          position: absolute
+          margin-left: -10px
+          font-family: FontAwesome
+          color: lightgray

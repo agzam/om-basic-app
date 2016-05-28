@@ -1,0 +1,18 @@
+.table
+  display: table
+  .thead
+    display: table-header-group
+    .tr
+      display: table-row
+      .th
+        display: table-cell
+  .tbody
+    display: table-row-group
+    .tr
+      display: table-row
+      &:nth-child(even)
+        background-color: lightgray
+      .td
+        display: table-cell
+        padding-left: 2px
+        padding-right: 2px
