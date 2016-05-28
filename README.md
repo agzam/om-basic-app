@@ -26,4 +26,6 @@ The intended behavior of the app should be the following:
 
 root component is `App`, it contains two main components - `TopNavBar` and `UiContainer`. Whenever item in navbar's menu gets selected - it triggers mutation on `:app/current-route`, which basically is a vector of keys - IDs of selected main menu and sub-menu items. 
 
-When the route-changes, it should trigger `update-root-queries`, which matches given route with a component using `route->component` (right now it's just a single `LedgerAccountIndexRoot`). So, it retrieves the component, grabs its queries and then in `update-root-queries` uses `om/set-query!` to update query of `UiContainer`, that should trigger fetching hosted component's data, since `App` component has a join query that points to UiContainer (it's commented out right now, and breaks everything when uncommmented)
+When the route-changes, it should trigger `update-root-queries`, which matches given route with a component using `route->component` (right now it's just a single `LedgerAccountIndexRoot`). So, it retrieves the component, grabs its queries and then in `update-root-queries` uses `om/set-query!` to update query of `UiContainer`, 
+
+that should trigger fetching hosted component's data, since `App` component has a join query that points to UiContainer (it's commented out right now and breaks everything when uncommmented)

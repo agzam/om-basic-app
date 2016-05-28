@@ -10,25 +10,6 @@
    [om-basic-app.ledger-index]
    [om-basic-app.navbar :as navbar]))
 
-(defmethod read :app/current-data
-  [{:keys [state ast query] :as env} key _]
-  (let [val (get @state key)
-        ch (mapv #(assoc {} (first (keys %)) '[*]) query)
-        tsa (-> query first :app/current-data om-parser/join->ast)
-        ]
-    (spy tsa)
-
-    #_{:remote tsa}
-    ;; {:remote (om-parser/join->ast (-> query first :app/current-data))}
-    ;; (spy (first query))
-    ;; {:remote (om/query->ast (first query))}
-    ;; {:remote ast}
-    ;; (spy (om/query->ast ch))
-    ;; {:remote (om/query->ast ch)}
-    #_(if (empty? val)
-      {:remote ast}
-      {:value val})))
-
 (defui App
   static om/IQuery
   (query [this]
