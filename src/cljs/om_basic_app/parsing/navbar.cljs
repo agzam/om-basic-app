@@ -76,5 +76,5 @@
 (defmethod read :app/current-route
   [{:keys [state]} _ _]
   (let [r (get @state :app/current-route :default)]
-    ;; (update-root-queries r)
+    (update-root-queries r)
     {:value r}))

@@ -10,6 +10,11 @@
    [om-basic-app.ledger-index]
    [om-basic-app.navbar :as navbar]))
 
+(defmethod read :app/current-data
+  [{:keys [state ast query]} key params]
+  (when (not= query [{:app/current-data []}])
+    {:remote (om-parser/join->ast query)}))
+
 (defui App
   static om/IQuery
   (query [this]
@@ -19,7 +24,7 @@
           sub-class (get route->component sub-ref)]
       `[{:app/main-menu ~(om/get-query navbar/TopNavBar)}
        {:app/current-route ~(om/subquery this sub-ref sub-class)}
-       #_{:app/current-data ~(om/get-query UiContainer)}]))
+       {:app/current-data ~(om/get-query UiContainer)}]))
 
   Object
   (render [this]
