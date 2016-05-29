@@ -124,7 +124,7 @@
         lis (get st key)]
     
     (if (empty? lis)
-      {:remote ast}
+      {:remote (assoc ast :query-root true)}
       {:value lis})))
 
 (defmethod read :ledger/resources
@@ -133,5 +133,5 @@
         lis (get st key)]
     
     (if (empty? lis)
-      {:remote ast}
+      {:remote (assoc ast :query-root true)}
       {:value lis})))

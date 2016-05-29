@@ -62,7 +62,7 @@
         cl (get route->component route)
         query (om/get-query cl)]
     (when (and (some? query) (some? uic) (om/component? uic))
-      (om/set-query! uic {:query [query]}))))
+      (om/set-query! uic {:query query}))))
   
 (defmethod mutate 'change-route-from-menu!
   [{:keys [state]} key {:keys [parent-id id]}]
@@ -76,5 +76,5 @@
 (defmethod read :app/current-route
   [{:keys [state]} _ _]
   (let [r (get @state :app/current-route :default)]
-    (update-root-queries r)
+    ;; (update-root-queries r)
     {:value r}))

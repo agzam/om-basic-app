@@ -12,8 +12,10 @@
 
 (defmethod read :app/current-data
   [{:keys [state ast query]} key params]
-  (when (not= query [{:app/current-data []}])
-    {:remote (om-parser/join->ast query)}))
+  (let [nast (-> query first om/query->ast)]
+    (spy nast)
+    {:remote nast})
+  )
 
 (defui App
   static om/IQuery
@@ -24,7 +26,7 @@
           sub-class (get route->component sub-ref)]
       `[{:app/main-menu ~(om/get-query navbar/TopNavBar)}
        {:app/current-route ~(om/subquery this sub-ref sub-class)}
-       {:app/current-data ~(om/get-query UiContainer)}]))
+       {:app/current-data ~(om/get-query sub-class)}]))
 
   Object
   (render [this]
