@@ -49,32 +49,15 @@
   [{:keys [state]} key props]
   {:action #(swap! state assoc :app/active-top-nav-menu props)})
 
-(defn query-converter [query key new-val] 
-  "takes a vector of maps, matches first key and sets given new-val"
-  (let [c-fn (fn [q-item]
-                (if (= key (-> q-item keys first)) 
-                  (assoc q-item key new-val) 
-                  q-item))]
-    (map c-fn query)))
-
-(defn update-root-queries [route]
-  (let [uic (om/class->any reconciler UiContainer)
-        cl (get route->component route)
-        query (om/get-query cl)]
-    (when (and (some? query) (some? uic) (om/component? uic))
-      (om/set-query! uic {:query query}))))
-  
 (defmethod mutate 'change-route-from-menu!
   [{:keys [state]} key {:keys [parent-id id]}]
   (let [new-route (conj [] parent-id id)]
     {:action (fn [] (
                      (swap! state assoc
                        :app/active-top-nav-menu nil 
-                       :app/current-route new-route)
-                     ))}))
+                       :app/current-route new-route)))}))
 
 (defmethod read :app/current-route
   [{:keys [state]} _ _]
   (let [r (get @state :app/current-route :default)]
-    ;; (update-root-queries r)
     {:value r}))

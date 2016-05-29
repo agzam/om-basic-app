@@ -10,13 +10,6 @@
    [om-basic-app.ledger-index]
    [om-basic-app.navbar :as navbar]))
 
-(defmethod read :app/current-data
-  [{:keys [state ast query]} key params]
-  (let [nast (-> query first om/query->ast)]
-    (spy nast)
-    {:remote nast})
-  )
-
 (defui App
   static om/IQuery
   (query [this]
@@ -30,8 +23,9 @@
 
   Object
   (render [this]
-    (let [props  (om/props this) 
-          navbar (om/factory navbar/TopNavBar)]
+    (let [{keys [:app/current-data :app/main-menu]}  (om/props this) 
+          navbar (om/factory navbar/TopNavBar)
+          embeded (om/factory sub-class)]
  
-      (html [:div (navbar (:app/main-menu props))
-             [:div (ui-container (:app/current-data props))]]))))
+      (html [:div (navbar main-menu)
+             [:div (embeded current-data)]]))))
